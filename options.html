@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Push to Notion Settings</title>
+  <link rel="stylesheet" type="text/css" href="options.css">
+</head>
+<body>
+  <h1>Settings</h1>
+  <div class="container">
+    <div class="input-group">
+      <label for="notion-key">Notion API Key:</label>
+      <input type="password" id="notion-key">
+    </div>
+    <div class="input-group">
+      <label for="database-id">Notion Database ID:</label>
+      <input type="text" id="database-id">
+    </div>
+    <div class="input-group">
+      <label for="google-api-key">Google AI API Key:</label>
+      <input type="password" id="google-api-key">
+    </div>
+    <button id="save-button">Save</button>
+    <div id="status"></div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

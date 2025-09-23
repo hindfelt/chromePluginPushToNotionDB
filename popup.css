@@ -1,0 +1,24 @@
+body {
+  font-family: sans-serif;
+  width: 250px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+#main {
+  padding: 10px;
+}
+
+#status {
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+#error {
+  color: red;
+  margin-top: 10px;
+}
