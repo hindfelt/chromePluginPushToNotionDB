@@ -6,6 +6,16 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
   const tab = tabs[0];
   const url = tab.url;
 
+  if (url.includes('perplexity.ai')) {
+    showError('Perplexity pages cannot be scripted.');
+    return;
+  }
+
+  if (url.startsWith('chrome://')) {
+    showError('Cannot script Chrome pages.');
+    return;
+  }
+
   try {
     chrome.scripting.executeScript(
       {
@@ -14,7 +24,11 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       },
       (injectionResults) => {
         if (chrome.runtime.lastError) {
-          showError(`Error getting page content: ${chrome.runtime.lastError.message}`);
+          if (chrome.runtime.lastError.message.includes('This page cannot be scripted')) {
+            showError('This page is protected and cannot be scripted.');
+          } else {
+            showError(`Error getting page content: ${chrome.runtime.lastError.message}`);
+          }
           return;
         }
         if (!injectionResults || injectionResults.length === 0) {
