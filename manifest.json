@@ -3,6 +3,7 @@
   "name": "Push to Notion",
   "version": "1.0",
   "description": "A Chrome extension to send web pages to a Notion database.",
+  "homepage_url": "https://hindfelt.github.io/chromePluginPushToNotionDB/privacy-policy.html",
   "permissions": [
     "activeTab",
     "storage",
