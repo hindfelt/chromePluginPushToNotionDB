@@ -75,6 +75,21 @@ cancelEditButton.addEventListener('click', () => {
   clearForm();
 });
 
+// Event delegation for Edit and Delete buttons
+databasesList.addEventListener('click', (e) => {
+  const button = e.target.closest('button[data-action]');
+  if (!button) return;
+
+  const action = button.dataset.action;
+  const dbId = button.dataset.dbId;
+
+  if (action === 'edit') {
+    editDatabase(dbId);
+  } else if (action === 'delete') {
+    deleteDatabase(dbId);
+  }
+});
+
 // Load all settings
 function loadSettings() {
   chrome.storage.sync.get(['googleApiKey', 'databases'], (result) => {
@@ -102,8 +117,8 @@ function loadDatabases() {
           <div class="database-id">ID: ${escapeHtml(db.databaseId)}</div>
         </div>
         <div class="database-actions">
-          <button class="edit-button" onclick="editDatabase('${db.id}')">Edit</button>
-          <button class="delete-button" onclick="deleteDatabase('${db.id}')">Delete</button>
+          <button class="edit-button" data-action="edit" data-db-id="${db.id}">Edit</button>
+          <button class="delete-button" data-action="delete" data-db-id="${db.id}">Delete</button>
         </div>
       </div>
     `).join('');
@@ -111,7 +126,7 @@ function loadDatabases() {
 }
 
 // Edit database
-window.editDatabase = function(id) {
+function editDatabase(id) {
   chrome.storage.sync.get(['databases'], (result) => {
     const databases = result.databases || [];
     const database = databases.find(db => db.id === id);
@@ -130,10 +145,10 @@ window.editDatabase = function(id) {
       document.querySelector('.database-form').scrollIntoView({ behavior: 'smooth' });
     }
   });
-};
+}
 
 // Delete database
-window.deleteDatabase = function(id) {
+function deleteDatabase(id) {
   if (!confirm('Are you sure you want to delete this database?')) {
     return;
   }
@@ -147,7 +162,7 @@ window.deleteDatabase = function(id) {
       showStatus(databaseStatus, 'Database deleted!', 'success');
     });
   });
-};
+}
 
 // Clear form
 function clearForm() {
