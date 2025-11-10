@@ -86,12 +86,13 @@ async function getSummary(content) {
 
 async function saveToNotion(data) {
   console.log('Saving to Notion with data:', data);
-  const { notionKey, databaseId } = await chrome.storage.sync.get(['notionKey', 'databaseId']);
-  if (!notionKey || !databaseId) {
-    throw new Error('Notion API key or Database ID not set. Please set them in the extension options.');
-  }
 
-  const { url, summary, whyItMatters, tags } = data;
+  // Extract notionKey and databaseId from data (passed from popup)
+  const { url, summary, whyItMatters, tags, notionKey, databaseId } = data;
+
+  if (!notionKey || !databaseId) {
+    throw new Error('Notion API key or Database ID not provided.');
+  }
   const today = new Date();
   const week = computeISOWeek(today);
 

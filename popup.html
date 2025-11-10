@@ -7,8 +7,16 @@
 <body>
   <div id="main">
     <h1>Push to Notion</h1>
-    <div id="status">
-      <p>Saving to Notion...</p>
+    <div id="selector-view">
+      <label for="database-select">Select Database:</label>
+      <select id="database-select">
+        <option value="">Loading databases...</option>
+      </select>
+      <button id="push-button">Push to Notion</button>
+      <a href="#" id="settings-link">Settings</a>
+    </div>
+    <div id="status" style="display: none;">
+      <p>Processing...</p>
     </div>
     <div id="error"></div>
   </div>
