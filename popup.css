@@ -60,14 +60,19 @@ h1 {
 }
 
 #settings-link {
-  text-align: center;
+  width: 100%;
+  padding: 8px;
   font-size: 12px;
+  background-color: transparent;
   color: #007bff;
-  text-decoration: none;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 #settings-link:hover {
-  text-decoration: underline;
+  background-color: #007bff;
+  color: white;
 }
 
 #status {

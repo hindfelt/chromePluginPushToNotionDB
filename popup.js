@@ -11,9 +11,8 @@ let databases = [];
 // Load databases on popup open
 loadDatabases();
 
-// Settings link handler
-settingsLink.addEventListener('click', (e) => {
-  e.preventDefault();
+// Settings button handler
+settingsLink.addEventListener('click', () => {
   chrome.runtime.openOptionsPage();
 });
 
